@@ -1,0 +1,130 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://menus/settings/settings.gd" type="Script" id=1]
+
+[sub_resource type="Theme" id=1]
+
+[node name="Settings" type="Node2D"]
+z_index = 2
+script = ExtResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 640.0
+margin_bottom = 360.0
+color = Color( 0.027451, 0.258824, 0.258824, 0.466667 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SettingsMenuUI" type="Control" parent="."]
+focus_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackButton" type="Button" parent="SettingsMenuUI"]
+margin_left = 576.0
+margin_top = 32.0
+margin_right = 618.0
+margin_bottom = 52.0
+text = "Back"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FullscreenCheck" type="CheckButton" parent="SettingsMenuUI"]
+margin_left = 248.0
+margin_top = 104.0
+margin_right = 394.0
+margin_bottom = 144.0
+pressed = true
+text = "Fullscreen"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VsyncCheck" type="CheckButton" parent="SettingsMenuUI"]
+margin_left = 264.0
+margin_top = 72.0
+margin_right = 381.0
+margin_bottom = 112.0
+text = "Vsync"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MasterLabel" type="RichTextLabel" parent="SettingsMenuUI"]
+anchor_bottom = 0.826
+margin_left = 232.0
+margin_top = 144.0
+margin_right = 432.0
+margin_bottom = 164.0
+text = "Master"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MasterVolumeSlider" type="HSlider" parent="SettingsMenuUI/MasterLabel"]
+margin_left = 48.0
+margin_right = 176.0
+margin_bottom = 16.0
+theme = SubResource( 1 )
+max_value = 1.0
+step = 0.01
+tick_count = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MusicLabel" type="RichTextLabel" parent="SettingsMenuUI"]
+anchor_bottom = 0.826
+margin_left = 232.0
+margin_top = 164.0
+margin_right = 432.0
+margin_bottom = 184.0
+text = "Music"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MusicVolumeSlider" type="HSlider" parent="SettingsMenuUI/MusicLabel"]
+margin_left = 48.0
+margin_right = 176.0
+margin_bottom = 16.0
+theme = SubResource( 1 )
+max_value = 1.0
+step = 0.01
+tick_count = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SoundLabel" type="RichTextLabel" parent="SettingsMenuUI"]
+anchor_bottom = 0.826
+margin_left = 232.0
+margin_top = 184.0
+margin_right = 432.0
+margin_bottom = 204.0
+text = "Sound"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SoundVolumeSlider" type="HSlider" parent="SettingsMenuUI/SoundLabel"]
+margin_left = 48.0
+margin_right = 176.0
+margin_bottom = 16.0
+theme = SubResource( 1 )
+max_value = 1.0
+step = 0.01
+tick_count = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="SettingsMenuUI/BackButton" to="." method="_on_BackButton_pressed"]
+[connection signal="toggled" from="SettingsMenuUI/FullscreenCheck" to="." method="_on_FullscreenCheck_toggled"]
+[connection signal="toggled" from="SettingsMenuUI/VsyncCheck" to="." method="_on_VsyncCheck_toggled"]
+[connection signal="value_changed" from="SettingsMenuUI/MasterLabel/MasterVolumeSlider" to="." method="_on_MasterVolumeSlider_value_changed"]
+[connection signal="value_changed" from="SettingsMenuUI/MusicLabel/MusicVolumeSlider" to="." method="_on_MusicVolumeSlider_value_changed"]
+[connection signal="value_changed" from="SettingsMenuUI/SoundLabel/SoundVolumeSlider" to="." method="_on_SoundVolumeSlider_value_changed"]

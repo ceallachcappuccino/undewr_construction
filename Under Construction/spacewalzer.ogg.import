@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/spacewalzer.ogg-4f0c0acf890260000eeb9a6533808842.oggstr"
+
+[deps]
+
+source_file="res://spacewalzer.ogg"
+dest_files=[ "res://.import/spacewalzer.ogg-4f0c0acf890260000eeb9a6533808842.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

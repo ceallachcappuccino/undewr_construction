@@ -1,0 +1,64 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://entities/enemies/death_follow.gd" type="Script" id=2]
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 6.0
+
+[sub_resource type="Gradient" id=9]
+offsets = PoolRealArray( 0, 0.0871795, 0.369231, 0.784615, 0.948718 )
+colors = PoolColorArray( 0.11447, 0, 0.212158, 1, 0.390316, 0.112534, 0.488281, 1, 0.92208, 0.452042, 0.925781, 1, 0.712274, 0.24173, 0.781144, 0.321465, 0.694118, 0.223529, 0.768627, 0.262745 )
+
+[sub_resource type="GradientTexture" id=10]
+gradient = SubResource( 9 )
+
+[sub_resource type="Curve" id=7]
+max_value = 5.0
+_data = [ Vector2( 0, 5 ), 0.0, -6.30579, 0, 0, Vector2( 0.0458716, 3.21899 ), -2.08612, -2.08612, 0, 0, Vector2( 1, 2.47798 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=8]
+curve = SubResource( 7 )
+
+[sub_resource type="ParticlesMaterial" id=6]
+lifetime_randomness = 0.32
+emission_shape = 1
+emission_sphere_radius = 5.0
+flag_disable_z = true
+direction = Vector3( 0, 0, 0 )
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 50.0
+angular_velocity = 145.21
+angular_velocity_random = 0.38
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+radial_accel = -100.0
+scale_curve = SubResource( 8 )
+color_ramp = SubResource( 10 )
+hue_variation = 0.03
+hue_variation_random = 1.0
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 150.0
+
+[node name="DeathFollow" type="KinematicBody2D" groups=["Enemy"]]
+script = ExtResource( 2 )
+
+[node name="EnemyCollsiion" type="CollisionShape2D" parent="."]
+shape = SubResource( 4 )
+
+[node name="DeathFolowParticle" type="Particles2D" parent="."]
+amount = 300
+speed_scale = 0.2
+local_coords = false
+draw_order = 1
+process_material = SubResource( 6 )
+
+[node name="DetectionArea" type="Area2D" parent="."]
+visible = false
+
+[node name="DetectionShape" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource( 5 )
+
+[connection signal="area_entered" from="DetectionArea" to="." method="_on_DetectionArea_area_entered"]
+[connection signal="area_exited" from="DetectionArea" to="." method="_on_DetectionArea_area_exited"]

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/tape_rewind.mp3-6474c845cd27acd2bdf4eda8b1715ad6.mp3str"
+
+[deps]
+
+source_file="res://entities/player/player_assets/sounds/tape_rewind.mp3"
+dest_files=[ "res://.import/tape_rewind.mp3-6474c845cd27acd2bdf4eda8b1715ad6.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

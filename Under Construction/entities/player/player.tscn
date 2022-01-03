@@ -1,0 +1,360 @@
+[gd_scene load_steps=43 format=2]
+
+[ext_resource path="res://entities/player/player_assets/animations/idle.png" type="Texture" id=1]
+[ext_resource path="res://entities/player/player_assets/animations/jump.png" type="Texture" id=2]
+[ext_resource path="res://entities/player/player_assets/animations/run.png" type="Texture" id=3]
+[ext_resource path="res://entities/player/player_assets/ui/stamina_bg.png" type="Texture" id=4]
+[ext_resource path="res://entities/player/player_assets/ui/stamina_fg.png" type="Texture" id=5]
+[ext_resource path="res://entities/player/player_assets/animations/wall_slide.png" type="Texture" id=6]
+[ext_resource path="res://entities/player/player_scripts/walkman.gd" type="Script" id=7]
+[ext_resource path="res://entities/player/player_scripts/glide_stamina.gd" type="Script" id=8]
+[ext_resource path="res://entities/player/RichTextLabel.gd" type="Script" id=9]
+[ext_resource path="res://entities/player/player_assets/sounds/tape_rewind.mp3" type="AudioStream" id=10]
+[ext_resource path="res://entities/player/player_assets/sounds/tape_change.ogg" type="AudioStream" id=11]
+[ext_resource path="res://entities/player/player_scripts/player.gd" type="Script" id=12]
+
+[sub_resource type="RectangleShape2D" id=14]
+extents = Vector2( 5, 15.5 )
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 3 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 3 )
+region = Rect2( 64, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 3 )
+region = Rect2( 96, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 3 )
+region = Rect2( 128, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 3 )
+region = Rect2( 160, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 3 )
+region = Rect2( 192, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 3 )
+region = Rect2( 224, 0, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=13]
+animations = [ {
+"frames": [ SubResource( 1 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 3 ) ],
+"loop": true,
+"name": "jump",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 2 ) ],
+"loop": true,
+"name": "glide",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 12 ) ],
+"loop": true,
+"name": "wall_slide",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ) ],
+"loop": true,
+"name": "run",
+"speed": 14.0
+} ]
+
+[sub_resource type="Gradient" id=19]
+offsets = PoolRealArray( 0.265217, 0.526087, 0.826087 )
+colors = PoolColorArray( 0.254902, 0.266667, 0.25098, 1, 0.8, 0.756863, 0.0980392, 0.52549, 0.254902, 0.760784, 0.537255, 1 )
+
+[sub_resource type="GradientTexture" id=20]
+gradient = SubResource( 19 )
+
+[sub_resource type="ParticlesMaterial" id=15]
+emission_shape = 2
+emission_box_extents = Vector3( 1, 8, 1 )
+flag_disable_z = true
+spread = 107.0
+gravity = Vector3( 0, 98, 0 )
+angular_velocity = 1.0
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+damping = 24.0
+damping_random = 0.31
+scale = 3.0
+scale_random = 1.0
+color_ramp = SubResource( 20 )
+
+[sub_resource type="ParticlesMaterial" id=16]
+flag_disable_z = true
+gravity = Vector3( 0, 98, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+
+[sub_resource type="ParticlesMaterial" id=17]
+flag_disable_z = true
+gravity = Vector3( 0, 98, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+
+[sub_resource type="Gradient" id=26]
+offsets = PoolRealArray( 0.241026, 0.779487, 1 )
+colors = PoolColorArray( 0.298726, 0.186193, 0.0886844, 1, 0.484375, 0.389185, 0.141907, 1, 0.454902, 0.301961, 0.12549, 0 )
+
+[sub_resource type="GradientTexture" id=27]
+gradient = SubResource( 26 )
+
+[sub_resource type="Curve" id=28]
+max_value = 2.0
+_data = [ Vector2( 0, 1.62756 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -4.48063, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=29]
+curve = SubResource( 28 )
+
+[sub_resource type="ParticlesMaterial" id=18]
+emission_shape = 2
+emission_box_extents = Vector3( 8, 1, 1 )
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+spread = 46.1
+gravity = Vector3( 0, 98, 0 )
+initial_velocity = 40.0
+angular_velocity = 217.82
+angular_velocity_random = 0.53
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+radial_accel = 10.0
+damping = 10.09
+scale_random = 0.92
+scale_curve = SubResource( 29 )
+color_ramp = SubResource( 27 )
+hue_variation = 0.1
+hue_variation_random = 0.22
+
+[sub_resource type="ParticlesMaterial" id=25]
+emission_shape = 1
+emission_sphere_radius = 5.0
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 500.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = -100.0
+damping = 100.0
+scale = 4.0
+color = Color( 0.247059, 0.588235, 0.403922, 1 )
+hue_variation = 0.02
+hue_variation_random = 0.57
+
+[sub_resource type="RectangleShape2D" id=21]
+extents = Vector2( 6, 15 )
+
+[sub_resource type="RectangleShape2D" id=22]
+extents = Vector2( 7, 1 )
+
+[sub_resource type="CircleShape2D" id=23]
+radius = 100.0
+
+[sub_resource type="Animation" id=30]
+resource_name = "fall_stun"
+tracks/0/type = "value"
+tracks/0/path = NodePath("PlayerVisuals/PlayerCanvasModulate:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.11, 1 ),
+"transitions": PoolRealArray( 1, 4.14106, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0.67451, 0.67451, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=24]
+resource_name = "shockwave"
+length = 0.25
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Areas/ShockwaveArea/ShockwaveShape:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.25 ),
+"transitions": PoolRealArray( 0.435275, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1e-05, 1e-05 ), Vector2( 1, 1 ), Vector2( 1.00136e-05, 1.00136e-05 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Areas/ShockwaveArea/ShockwaveShape:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[node name="Player" type="KinematicBody2D" groups=["Player"]]
+use_parent_material = true
+script = ExtResource( 12 )
+
+[node name="PlayerCollision" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 0.5 )
+shape = SubResource( 14 )
+
+[node name="PlayerVisuals" type="Node2D" parent="."]
+use_parent_material = true
+
+[node name="PlayerAnimation" type="AnimatedSprite" parent="PlayerVisuals"]
+frames = SubResource( 13 )
+animation = "idle"
+
+[node name="Effects" type="Node2D" parent="PlayerVisuals"]
+
+[node name="ShoulderParticles" type="Particles2D" parent="PlayerVisuals/Effects"]
+position = Vector2( 7, 3 )
+rotation = 3.14159
+emitting = false
+amount = 35
+lifetime = 0.5
+speed_scale = 0.5
+randomness = 0.1
+process_material = SubResource( 15 )
+
+[node name="GlideDrain" type="Particles2D" parent="PlayerVisuals/Effects"]
+emitting = false
+process_material = SubResource( 16 )
+
+[node name="GlideRestore" type="Particles2D" parent="PlayerVisuals/Effects"]
+emitting = false
+process_material = SubResource( 17 )
+
+[node name="HighDropStun" type="Particles2D" parent="PlayerVisuals/Effects"]
+position = Vector2( 0, 16 )
+emitting = false
+amount = 20
+lifetime = 0.8
+one_shot = true
+explosiveness = 0.85
+randomness = 0.54
+process_material = SubResource( 18 )
+
+[node name="Shockwave" type="Particles2D" parent="PlayerVisuals/Effects"]
+emitting = false
+amount = 200
+lifetime = 0.2
+one_shot = true
+explosiveness = 1.0
+randomness = 0.51
+process_material = SubResource( 25 )
+
+[node name="PlayerCanvasModulate" type="CanvasModulate" parent="PlayerVisuals"]
+
+[node name="PlayerUI" type="Node2D" parent="."]
+
+[node name="GlideStamina" type="TextureProgress" parent="PlayerUI"]
+margin_left = -15.0
+margin_top = -24.0
+margin_right = -6.0
+margin_bottom = -15.0
+max_value = 4.0
+step = 0.1
+texture_under = ExtResource( 4 )
+texture_progress = ExtResource( 5 )
+fill_mode = 5
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Areas" type="Node2D" parent="."]
+visible = false
+
+[node name="PlayerArea" type="Area2D" parent="Areas"]
+
+[node name="PlayerAreaShape" type="CollisionShape2D" parent="Areas/PlayerArea"]
+position = Vector2( 0, 1 )
+shape = SubResource( 21 )
+
+[node name="Shoulder" type="Area2D" parent="Areas"]
+
+[node name="ShoulderArea" type="CollisionShape2D" parent="Areas/Shoulder"]
+position = Vector2( 0, -6 )
+shape = SubResource( 22 )
+
+[node name="ShockwaveArea" type="Area2D" parent="Areas"]
+monitorable = false
+
+[node name="ShockwaveShape" type="CollisionShape2D" parent="Areas/ShockwaveArea"]
+scale = Vector2( 1e-05, 1e-05 )
+shape = SubResource( 23 )
+
+[node name="PlayerCamera" type="Camera2D" parent="."]
+current = true
+process_mode = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PlayerCamera"]
+margin_left = 264.0
+margin_top = -168.0
+margin_right = 304.0
+margin_bottom = -128.0
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayerTween" type="Tween" parent="."]
+
+[node name="PlayerAnimationPlayer" type="AnimationPlayer" parent="."]
+anims/fall_stun = SubResource( 30 )
+anims/shockwave = SubResource( 24 )
+
+[node name="Walkman" type="AudioStreamPlayer" parent="."]
+bus = "Music"
+script = ExtResource( 7 )
+change_tape_sound = ExtResource( 11 )
+rewind_tape_sound = ExtResource( 10 )
+
+[connection signal="area_entered" from="Areas/PlayerArea" to="." method="_on_PlayerArea_area_entered"]
+[connection signal="area_exited" from="Areas/PlayerArea" to="." method="_on_PlayerArea_area_exited"]
+[connection signal="body_entered" from="Areas/PlayerArea" to="." method="_on_PlayerArea_body_entered"]
+[connection signal="body_entered" from="Areas/Shoulder" to="." method="_on_Shoulder_body_entered"]
+[connection signal="body_exited" from="Areas/Shoulder" to="." method="_on_Shoulder_body_exited"]
+[connection signal="body_entered" from="Areas/ShockwaveArea" to="." method="_on_ShockwaveArea_body_entered"]
+[connection signal="finished" from="Walkman" to="Walkman" method="_on_Walkman_finished"]
